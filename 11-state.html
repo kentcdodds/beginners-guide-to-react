@@ -1,0 +1,16 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    function Counter() {
+      const [count, setCount] = React.useState(0)
+      foo()
+      const increment = () => setCount(count + 1)
+      return <button onClick={increment}>{count}</button>
+    }
+
+    ReactDOM.render(<Counter />, document.getElementById('root'))
+  </script>
+</body>

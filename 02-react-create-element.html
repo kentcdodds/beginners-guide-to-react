@@ -1,0 +1,13 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script type="text/javascript">
+    const rootElement = document.getElementById('root')
+    const element = React.createElement('div', {
+      className: 'container',
+      children: 'Hello World',
+    })
+    ReactDOM.render(element, rootElement)
+  </script>
+</body>
