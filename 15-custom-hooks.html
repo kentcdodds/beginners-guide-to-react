@@ -4,14 +4,20 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    function Greeting() {
-      const [name, setName] = React.useState(
-        window.localStorage.getItem('name') || '',
+    function useLocalStorageState(key, defaultValue = '') {
+      const [state, setState] = React.useState(
+        () => window.localStorage.getItem(key) || defaultValue,
       )
 
       React.useEffect(() => {
-        window.localStorage.setItem('name', name)
-      })
+        window.localStorage.setItem(key, state)
+      }, [key, state])
+
+      return [state, setState]
+    }
+
+    function Greeting() {
+      const [name, setName] = useLocalStorageState('name')
 
       const handleChange = event => setName(event.target.value)
 

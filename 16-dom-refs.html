@@ -47,7 +47,7 @@
       const tiltRef = React.useRef()
 
       React.useEffect(() => {
-        const {current: tiltNode} = tiltRef
+        const tiltNode = tiltRef.current
         const vanillaTiltOptions = {
           max: 25,
           speed: 400,
