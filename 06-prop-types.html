@@ -7,23 +7,20 @@
   <script type="text/babel">
     const rootElement = document.getElementById('root')
 
-    class SayHello extends React.Component {
-      static propTypes = {
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-      }
-
-      render() {
-        const {firstName, lastName} = this.props
-        return (
-          <div>
-            Hello {firstName} {lastName}!
-          </div>
-        )
-      }
+    function SayHello({firstName, lastName}) {
+      return (
+        <div>
+          Hello {firstName} {lastName}!
+        </div>
+      )
     }
 
-    const element = <SayHello firstName="Jojo" lastName="Potatoes" />
+    SayHello.propTypes = {
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }
+
+    const element = <SayHello firstName="Sonic" lastName="The Hedgehog" />
 
     ReactDOM.render(element, rootElement)
   </script>
