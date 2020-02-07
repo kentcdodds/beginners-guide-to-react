@@ -8,26 +8,24 @@
 
     const state = {eventCount: 0, username: ''}
 
-    function increment() {
-      setState({eventCount: state.eventCount + 1})
-    }
-
-    function updateUsername(event) {
-      setState({
-        username: event.target.value,
-      })
-    }
-
     function App() {
+      function handleClick() {
+        setState({eventCount: state.eventCount + 1})
+      }
+
+      function handleChange(event) {
+        setState({username: event.target.value})
+      }
+
       return (
         <div>
           <p>There have been {state.eventCount} events.</p>
           <p>
-            <button onClick={increment}>Click Me</button>
+            <button onClick={handleClick}>Click Me</button>
           </p>
           <p>You typed: {state.username}</p>
           <p>
-            <input onBlur={updateUsername} />
+            <input onChange={handleChange} />
           </p>
         </div>
       )
@@ -43,6 +41,5 @@
     }
 
     renderApp()
-    setState({eventCount: 10})
   </script>
 </body>
