@@ -26,6 +26,16 @@
       )
     }
 
-    ReactDOM.render(<Greeting />, document.getElementById('root'))
+    function App() {
+      const [count, setCount] = React.useState(0)
+      return (
+        <>
+          <button onClick={() => setCount(c => c + 1)}>{count}</button>
+          <Greeting />
+        </>
+      )
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>
