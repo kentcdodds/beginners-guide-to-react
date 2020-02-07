@@ -25,13 +25,13 @@
     }
   </style>
   <script type="text/babel">
-    function Box({style, size, className = '', ...otherProps}) {
+    function Box({style, size, className = '', ...rest}) {
       const sizeClassName = size ? `box--${size}` : ''
       return (
         <div
           className={`box ${className} ${sizeClassName}`}
           style={{fontStyle: 'italic', ...style}}
-          {...otherProps}
+          {...rest}
         />
       )
     }
