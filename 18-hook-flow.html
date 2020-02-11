@@ -40,16 +40,17 @@
       React.useEffect(() => {
         console.log('%c    Child: useEffect with dep', 'color: HotPink')
         return () => {
-          console.log('%cApp: useEffect with dep cleanup', 'color: HotPink')
+          console.log(
+            '%c    Child: useEffect with dep cleanup',
+            'color: HotPink',
+          )
         }
       }, [count])
 
       const element = (
-        <>
-          <button onClick={() => setCount(previousCount => previousCount + 1)}>
-            {count}
-          </button>
-        </>
+        <button onClick={() => setCount(previousCount => previousCount + 1)}>
+          {count}
+        </button>
       )
 
       console.log('%c    Child: render end', 'color: MediumSpringGreen')
