@@ -55,7 +55,9 @@
           'max-glare': 0.5,
         }
         VanillaTilt.init(tiltNode, vanillaTiltOptions)
-        return () => tiltNode.vanillaTilt.destroy()
+        return () => {
+          tiltNode.vanillaTilt.destroy()
+        }
       }, [])
 
       return (
@@ -65,12 +67,27 @@
       )
     }
 
-    const element = (
-      <Tilt>
-        <div className="totally-centered">vanilla-tilt.js</div>
-      </Tilt>
-    )
+    function App() {
+      const [showTilt, setShowTilt] = React.useState(true)
+      return (
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={showTilt}
+              onChange={e => setShowTilt(e.target.checked)}
+            />{' '}
+            show tilt
+          </label>
+          {showTilt ? (
+            <Tilt>
+              <div className="totally-centered">vanilla-tilt.js</div>
+            </Tilt>
+          ) : null}
+        </div>
+      )
+    }
 
-    ReactDOM.render(element, document.getElementById('root'))
+    ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>
