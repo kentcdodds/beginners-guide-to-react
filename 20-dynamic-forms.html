@@ -4,14 +4,15 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    function UsernameForm({onSubmitUsername}) {
+    function UsernameForm() {
       const [username, setUsername] = React.useState('')
       const isLowerCase = username === username.toLowerCase()
       const error = isLowerCase ? null : 'Username must be lower case'
 
       function handleSubmit(event) {
         event.preventDefault()
-        onSubmitUsername(event.target.elements.usernameInput.value)
+        const username = event.target.elements.usernameInput.value
+        alert(`You entered: ${username}`)
       }
 
       function handleChange(event) {
@@ -32,11 +33,6 @@
       )
     }
 
-    function App() {
-      const onSubmitUsername = username => alert(`You entered: ${username}`)
-      return <UsernameForm onSubmitUsername={onSubmitUsername} />
-    }
-
-    ReactDOM.render(<App />, document.getElementById('root'))
+    ReactDOM.render(<UsernameForm />, document.getElementById('root'))
   </script>
 </body>

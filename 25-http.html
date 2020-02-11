@@ -98,8 +98,6 @@
       )
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'))
-
     function fetchPokemon(name) {
       const pokemonQuery = `
         query ($name: String) {
@@ -133,5 +131,7 @@
         .then(r => r.json())
         .then(response => response.data.pokemon)
     }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>
