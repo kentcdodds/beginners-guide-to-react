@@ -4,165 +4,37 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    function Text() {
-      const [value, setValue] = React.useState('')
-      return (
-        <div>
-          <label htmlFor="textInput">Text: </label>
-          <input
-            id="textInput"
-            type="text"
-            value={value}
-            onChange={event => setValue(event.target.value)}
-          />
-        </div>
-      )
-    }
-
-    function Textarea() {
-      const [value, setValue] = React.useState('')
-      return (
-        <div>
-          <label htmlFor="textareaInput">Textarea: </label>
-          <textarea
-            id="textareaInput"
-            value={value}
-            onChange={event => setValue(event.target.value)}
-          />
-        </div>
-      )
-    }
-
-    function Checkbox() {
-      const [checked, setChecked] = React.useState(false)
-      return (
-        <div>
-          <label htmlFor="checkboxInput">Checkbox: </label>
-          <input
-            id="checkboxInput"
-            type="checkbox"
-            checked={checked}
-            onChange={e => setChecked(event.target.checked)}
-          />
-        </div>
-      )
-    }
-
-    function Radio() {
-      const [radio, setRadio] = React.useState('a')
-
-      function handleChange(event) {
-        setRadio(event.target.value)
-      }
-
-      return (
-        <div>
-          <fieldset id="radioField">
-            <legend>Radio</legend>
-            <label>
-              <input
-                type="radio"
-                value="a"
-                checked={radio === 'a'}
-                onChange={handleChange}
-              />{' '}
-              Apple
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="o"
-                checked={radio === 'o'}
-                onChange={handleChange}
-              />{' '}
-              Orange
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="g"
-                checked={radio === 'g'}
-                onChange={handleChange}
-              />{' '}
-              Grape
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="p"
-                checked={radio === 'p'}
-                onChange={handleChange}
-              />{' '}
-              Pear
-            </label>
-          </fieldset>
-        </div>
-      )
-    }
-
-    function Select() {
-      const [selection, setSelection] = React.useState('a')
-
-      function handleChange(event) {
-        setSelection(event.target.value)
-      }
-
-      return (
-        <div>
-          <label htmlFor="selectField">Select </label>
-          <select id="selectField" value={selection} onChange={handleChange}>
-            <option value="a">Apple</option>
-            <option value="o">Orange</option>
-            <option value="g">Grape</option>
-            <option value="p">Pear</option>
-          </select>
-        </div>
-      )
-    }
-
-    function MultiSelect() {
-      const [selection, setSelection] = React.useState(['a'])
-
-      function handleChange(event) {
-        const selectedOptions = Array.from(event.target.selectedOptions)
-        const selectedValues = selectedOptions.map(option => option.value)
-        setSelection(selectedValues)
-      }
-
-      return (
-        <div>
-          <label htmlFor="multiSelectField">Multi-select </label>
-          <select
-            id="multiSelectField"
-            multiple
-            value={selection}
-            onChange={handleChange}
-          >
-            <option value="a">Apple</option>
-            <option value="o">Orange</option>
-            <option value="g">Grape</option>
-            <option value="p">Pear</option>
-          </select>
-        </div>
-      )
-    }
-
-    function File() {
-      const [file, setFile] = React.useState(null)
-      return (
-        <div>
-          <label htmlFor="fileInput">File: </label>
-          <input
-            id="fileInput"
-            type="file"
-            onChange={event => setFile(event.target.files[0])}
-          />
-        </div>
-      )
-    }
+    const allItems = ['apple', 'orange', 'grape', 'pear']
 
     function FormElements() {
-      const [textarea, setTextarea] = React.useState('')
+      const [values, setValues] = React.useState([])
+      const commaValues = values.join(',')
+      const selectValues = values.filter(value => allItems.includes(value))
+      const multilineValues = values.join('\n')
+
+      function handleCommaChange(event) {
+        setValues(event.target.value.split(','))
+      }
+
+      function handleMultilineChange(event) {
+        setValues(event.target.value.split('\n'))
+      }
+
+      function handleSelectChange(event) {
+        const selectedOptions = Array.from(event.target.selectedOptions)
+        const selectedValues = selectedOptions.map(option => option.value)
+        setValues(selectedValues)
+      }
+
+      function handleCheckboxChange(event) {
+        let valuesCopy = [...values]
+        if (valuesCopy.includes('grape')) {
+          valuesCopy = valuesCopy.filter(value => value !== 'grape')
+        } else {
+          valuesCopy.push('grape')
+        }
+        setValues(valuesCopy)
+      }
 
       function handleSubmit(event) {
         event.preventDefault()
@@ -171,13 +43,48 @@
 
       return (
         <form onSubmit={handleSubmit}>
-          <Text />
-          <Textarea />
-          <Checkbox />
-          <Radio />
-          <Select />
-          <MultiSelect />
-          <File />
+          <div>
+            <label htmlFor="textInput">Text: </label>
+            <input
+              id="textInput"
+              type="text"
+              value={commaValues}
+              onChange={handleCommaChange}
+              style={{width: 140}}
+            />
+          </div>
+          <div>
+            <label htmlFor="textareaInput">Textarea: </label>
+            <textarea
+              id="textareaInput"
+              value={multilineValues}
+              onChange={handleMultilineChange}
+              style={{height: 60}}
+            />
+          </div>
+          <div>
+            <label htmlFor="multiSelectField">Multi-select </label>
+            <select
+              id="multiSelectField"
+              multiple
+              value={values}
+              onChange={handleSelectChange}
+            >
+              <option value="apple">apple</option>
+              <option value="orange">orange</option>
+              <option value="grape">grape</option>
+              <option value="pear">pear</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="checkboxInput">Has grape: </label>
+            <input
+              id="checkboxInput"
+              type="checkbox"
+              checked={values.includes('grape')}
+              onChange={handleCheckboxChange}
+            />
+          </div>
           <button type="submit">Submit</button>
         </form>
       )
