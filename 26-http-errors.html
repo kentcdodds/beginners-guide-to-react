@@ -9,7 +9,7 @@
       const [pokemon, setPokemon] = React.useState(null)
       const [error, setError] = React.useState(null)
 
-      React.useEffect(() => {
+      function loadPokemon() {
         if (!pokemonName) {
           return
         }
@@ -24,14 +24,16 @@
             setError(errorData)
           },
         )
-      }, [pokemonName])
+      }
+
+      React.useEffect(loadPokemon, [pokemonName])
 
       if (status === 'idle') {
         return 'Submit a pokemon'
       }
 
       if (status === 'rejected') {
-        return 'Oh no...'
+        return <pre> Something went wrong. <button onClick={loadPokemon}>Try again</button></pre>
       }
 
       if (status === 'pending') {
@@ -67,12 +69,13 @@
     }
 
     function fetchPokemon(name) {
+      const shouldFail = (Math.floor(Math.random() * 11) % 2) === 0
       const pokemonQuery = `
         query ($name: String) {
           pokemon(name: $name) {
             id
             number
-            name
+            ${shouldFail ? 'nam' : 'name'}
             attacks {
               special {
                 name
