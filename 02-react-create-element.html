@@ -6,8 +6,22 @@
     const rootElement = document.getElementById('root')
     const element = React.createElement('div', {
       className: 'container',
-      children: 'Hello World',
+      children: ['Hello Word', ', Goodbye World']
     })
+    console.log(element);
     ReactDOM.render(element, rootElement)
+    // const element = document.createElement('div')
+    // element.textContext = 'Hello World'
+    // element.className = 'container'
+    // rootElement.appendChild(element)
+
+
+    // children can be declared in various ways:
+    // 1. value of children prop:
+      // children: ['Hello Word', ', Goodbye World']
+      // children: React.createElement('span', null, 'Hello', ' World')
+    // 2. third argument in React.createElement('type', {props}, children)
+
   </script>
 </body>
+
