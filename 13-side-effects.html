@@ -5,20 +5,23 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     function Greeting() {
+      // if local memory has a name, use that as state, otherwise use empty string
       const [name, setName] = React.useState(
         window.localStorage.getItem('name') || '',
       )
-
+      // save name in local memory
       React.useEffect(() => {
         window.localStorage.setItem('name', name)
       })
 
       const handleChange = event => setName(event.target.value)
 
+      // controlled input, name updates in local memory and shows on UI
       return (
         <div>
           <form>
             <label htmlFor="name">Name: </label>
+            
             <input value={name} onChange={handleChange} id="name" />
           </form>
           {name ? <strong>Hello {name}</strong> : 'Please type your name'}

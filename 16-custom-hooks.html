@@ -16,6 +16,8 @@
       return [state, setState]
     }
 
+    //functions that begin with use are treated as custom hooks and benefit from the hooks API
+
     function Greeting() {
       const [name, setName] = useLocalStorageState('name')
 

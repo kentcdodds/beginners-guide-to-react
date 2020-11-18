@@ -5,10 +5,13 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     function Greeting() {
+      // called sychronously
+      // reading into local storage only necessary on first render
+      // return value is now a function that is only called on first render
       const [name, setName] = React.useState(
         () => window.localStorage.getItem('name') || '',
       )
-
+console.log('rendered');
       React.useEffect(() => {
         window.localStorage.setItem('name', name)
       })
