@@ -76,7 +76,7 @@
 
     function fetchPokemon(name) {
       const pokemonQuery = `
-        query ($name: String) {
+        query PokemonInfo($name: String) {
           pokemon(name: $name) {
             id
             number
