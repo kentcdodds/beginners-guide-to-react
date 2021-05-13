@@ -1,3 +1,16 @@
+<!-- My solution -->
+<body>
+  <div id="root"></div>
+  <script type="module">
+    const node = document.getElementById("root");
+    const codeBlock = document.createElement("div");
+    node.append(codeBlock);
+    codeBlock.className = "container";
+    codeBlock.innerText = "Hello World" 
+  </script>
+</body>
+
+<!-- Kent's solution
 <body>
   <div id="root"></div>
   <script type="text/javascript">
@@ -8,3 +21,33 @@
     rootElement.appendChild(element)
   </script>
 </body>
+-->
+
+<!-- Mithi's solution
+// case 0
+// If the root element doesn't exist yet we must creat and append it to the dom first
+let rootElement = document.createElement("div")
+rootElement.setAttribute("id", "root")
+document.body.append(rootElement)
+// case 1
+// If the element with an id of `root` already exists in the document
+// we just need to grab it
+rootElement = document.getElementById("root")
+// for both case 0 and 1
+// create the child element, set properties, append to the dom
+const element = document.createElement("div")
+element.textContent = "Hello World"
+element.className = "container"
+rootElement.append(element)
+-->
+
+<!-- RESOURCES:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+https://dev.to/ibn_abubakre/append-vs-appendchild-a4m
+https://dev.to/microrony/difference-between-classlist-and-classname-45j7
+https://developer.mozilla.org/en-US/docs/Web/API/Document
+https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Using_the_W3C_DOM_Level_1_Core
+https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+https://stackoverflow.com/questions/35213147/difference-between-textcontent-vs-innertext
+https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
+-->
