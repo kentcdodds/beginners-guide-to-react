@@ -1,13 +1,72 @@
+<!-- EXERCISE TWO: BABEL FOR INLINE JSX:
+  Exercise 2a: Create an div element with a class of container with Hello World written on it. Use jsx syntax. Assume that a div with an id of root already exists in the page. Put the div with a class of container inside the root node. Use ReactDom to render this on the browser.
+-->
+
+<!-- My solution of React element in JSX-->
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const element = <div className="container">Hello World</div>
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+
+<!-- My solution using components  -->
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const MyElement = () => <div className="container">Hello World</div>
+    ReactDOM.render(<MyElement/>, rootElement);
+  </script>
+</body> 
+
+<!-- EXERCISE TWO: BABEL FOR INLINE JSX:
+  Exercise 2b: Do the same as in Exercise 2a, but instead of using jsx syntax, use React.createElement instead.
+-->
+
+<!-- My solution using React.createElement with props as a second argument -->
 <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script type="text/javascript">
-    const rootElement = document.getElementById('root')
-    const element = React.createElement('div', {
-      className: 'container',
-      children: 'Hello World',
-    })
-    ReactDOM.render(element, rootElement)
+    const rootElement = document.getElementById("root");
+    const element = React.createElement("div", {
+      children: "Hello World",
+      className: "container",
+    });
+    ReactDOM.render(element, rootElement);
   </script>
 </body>
+
+<!-- My solution using React.createElement with children as a third argument -->
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = React.createElement(
+      "div",
+      {
+        // children: "Hello World",
+        className: "container",
+      },
+      "Hello World", ", Goodbye World"
+    );
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+
+<!-- RESOURCES:
+  https://reactjs.org/docs/react-without-jsx.html
+  https://github.com/thoughtworks-jumpstart/react-hello-world
+-->
